@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automação de Conciliação Bancária | Leiene Neves</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="../../index.html" class="logo-link">
+                <img class="logo" src="../../assets/images/logo.png" alt="Voltar ao portfólio">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html#projects">Voltar aos Projetos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Conteúdo do Projeto -->
+    <main class="project-detail">
+        <div class="container">
+            <h1>Automação de Conciliação Bancária</h1>
+            
+            <div class="project-meta">
+                <span class="tech">Python</span>
+                <span class="tech">Selenium</span>
+                <span class="tech">SQL</span>
+                <span class="tech">Power BI</span>
+                <a href="#" class="btn disabled">Demo Interna</a>
+                <a href="https://github.com/htmleiene/automacao-conciliacao" target="_blank" class="btn secondary">Código no GitHub</a>
+            </div>
+
+            <div class="project-content">
+                <section class="project-overview">
+                    <h2><i class="fas fa-search"></i> Visão Geral</h2>
+                    <p>Sistema RPA que automatiza a conciliação de transações bancárias entre sistemas financeiros, substituindo planilhas manuais e reduzindo erros operacionais.</p>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <i class="fas fa-clock"></i>
+                            <strong>8h → 2h</strong>
+                            <p>tempo diário</p>
+                        </div>
+                        <div class="result-card">
+                            <i class="fas fa-bug"></i>
+                            <strong>90%</strong>
+                            <p>redução de erros</p>
+                        </div>
+                        <div class="result-card">
+                            <i class="fas fa-database"></i>
+                            <strong>15+</strong>
+                            <p>processos otimizados</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="project-screenshots">
+                    <h2><i class="fas fa-image"></i> Fluxo da Solução</h2>
+                    <div class="gallery">
+                        <img src="assets/screens/fluxo-conciliacao.png" alt="Diagrama do fluxo de automação">
+                        <img src="assets/screens/dashboard-conciliacao.png" alt="Dashboard de monitoramento">
+                    </div>
+                </section>
+
+                <section class="project-challenges">
+                    <h2><i class="fas fa-puzzle-piece"></i> Desafios e Soluções</h2>
+                    <ul>
+                        <li>
+                            <strong>Problema:</strong> Dados bancários em formatos inconsistentes (CSV, PDF, APIs).<br>
+                            <strong>Solução:</strong> Desenvolvimento de um parser universal com Python e Pandas.
+                        </li>
+                        <li>
+                            <strong>Problema:</strong> Lentidão na consulta de transações históricas.<br>
+                            <strong>Solução:</strong> Criação de um cache em banco SQLite com indexação inteligente.
+                        </li>
+                    </ul>
+                </section>
+
+                <section class="project-architecture">
+                    <h2><i class="fas fa-project-diagram"></i> Arquitetura</h2>
+                    <div class="architecture-diagram">
+                        <img src="assets/screens/arquitetura.png" alt="Diagrama de arquitetura">
+                        <ul>
+                            <li><i class="fas fa-circle"></i> <strong>Extrator:</strong> Robô Python/Selenium para coletar dados</li>
+                            <li><i class="fas fa-circle"></i> <strong>Transformador:</strong> Scripts SQL/Pandas para tratamento</li>
+                            <li><i class="fas fa-circle"></i> <strong>Loader:</strong> Power BI para visualização</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Leiene Neves. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>

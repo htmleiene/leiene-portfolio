@@ -1,0 +1,40 @@
+/* Estilos complementares */
+.project-architecture {
+    margin-top: 50px;
+}
+
+.architecture-diagram {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.architecture-diagram ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.architecture-diagram li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.architecture-diagram i {
+    color: #3498db;
+    font-size: 0.8rem;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .architecture-diagram {
+        grid-template-columns: 1fr;
+    }
+}

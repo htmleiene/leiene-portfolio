@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Financeiro | Leiene Neves</title>
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="../../index.html" class="logo-link">
+                <img class="logo" src="../../assets/images/logo.png" alt="Voltar ao portfólio">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html#projects">Voltar aos Projetos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="project-detail">
+        <div class="container">
+            <h1>Dashboard Financeiro</h1>
+            <div class="project-meta">
+                <span class="tech">Power BI</span>
+                <span class="tech">SQL</span>
+                <span class="tech">Python</span>
+                <a href="#" class="btn disabled">Demo Interna</a>
+                <a href="LINK_GITHUB" target="_blank" class="btn secondary">Código no GitHub</a>
+            </div>
+
+            <div class="project-content">
+                <section class="project-overview">
+                    <h2><i class="fas fa-search"></i> Visão Geral</h2>
+                    <p>Painel interativo que consolida dados financeiros de múltiplas fontes (ERP, bancos, planilhas) para análise estratégica em tempo real.</p>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <i class="fas fa-bolt"></i>
+                            <strong>5 fontes</strong>
+                            <p>integradas</p>
+                        </div>
+                        <div class="result-card">
+                            <i class="fas fa-sync-alt"></i>
+                            <strong>Atualização</strong>
+                            <p>hora a hora</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="project-screenshots">
+                    <h2><i class="fas fa-image"></i> Telas do Dashboard</h2>
+                    <div class="gallery">
+                        <img src="assets/screens/dash-financeiro-1.png" alt="Visão geral">
+                        <img src="assets/screens/dash-financeiro-2.png" alt="Detalhamento por área">
+                    </div>
+                </section>
+
+                <section class="project-challenges">
+                    <h2><i class="fas fa-puzzle-piece"></i> Desafios Técnicos</h2>
+                    <ul>
+                        <li>
+                            <strong>Problema:</strong> Dados desestruturados de bancos diferentes.<br>
+                            <strong>Solução:</strong> Pipeline ETL com Python para padronização.
+                        </li>
+                        <li>
+                            <strong>Problema:</strong> Lentidão em consultas com 1M+ registros.<br>
+                            <strong>Solução:</strong> Otimização de queries SQL e particionamento.
+                        </li>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Leiene Neves. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+</body>
+</html>
