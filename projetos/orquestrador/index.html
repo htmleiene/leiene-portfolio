@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orquestrador de Robôs | Leiene Neves</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="../../index.html" class="logo-link">
+      <img class="logo" src="../../assets/images/logo.png" alt="Voltar ao portfólio">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="../../index.html#projects">Voltar aos Projetos</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="project-detail">
+  <div class="container">
+    <h1>Orquestrador de Robôs</h1>
+
+    <div class="project-meta">
+      <span class="tech">Python</span>
+      <span class="tech">Flask</span>
+      <span class="tech">Automação RPA</span>
+      <a href="#" class="btn disabled">Demo Interna</a>
+    </div>
+
+    <div class="project-content">
+      <section class="project-overview">
+        <h2><i class="fas fa-search"></i> Visão Geral</h2>
+        <p>Sistema centralizador para controle de robôs RPA. Permite visualizar, iniciar, pausar e monitorar fluxos automatizados de diferentes áreas do negócio, com registro de logs e alertas.</p>
+
+        <div class="results-grid">
+          <div class="result-card">
+            <i class="fas fa-cogs"></i>
+            <strong>Gerenciamento</strong>
+            <p>de Robôs</p>
+          </div>
+          <div class="result-card">
+            <i class="fas fa-clock"></i>
+            <strong>Agendamentos</strong>
+            <p>e Execuções</p>
+          </div>
+          <div class="result-card">
+            <i class="fas fa-robot"></i>
+            <strong>Fluxos</strong>
+            <p>Automatizados</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="project-screenshots">
+        <h2><i class="fas fa-image"></i> Telas do Protótipo</h2>
+        <div class="screenshots">
+          <img src="assets/images/Page_View.jpg" alt="Tela de Login em APP">
+          <img src="assets/images/Page_PC.jpg" alt="Tela de Login">
+          <img src="assets/images/Page_PC_DarkMode.jpg" alt="Tela de Login Dark Mode">
+          <img src="assets/images/Page.jpg" alt="Tela Inicial">
+          <img src="assets/images/ExecutePage.jpg" alt="Tela de Execução dos">
+          <img src="assets/images/RobotsPage.jpg" alt="Tela dos Robod">
+
+
+
+        </div>
+      </section>
+
+      <section class="project-content">
+        <h2>Centralizador de Arquivos</h2>
+        <p>Baixe o executável para utilizar o Centralizador de Arquivos.</p>
+        <a href="https://github.com/htmleiene/leiene-portfolio/blob/main/assets/centralizador.exe?raw=true" class="btn primary" download>
+            Baixar e Executar Centralizador
+        </a>
+        </section>
+    
+
+      <section class="project-challenges">
+        <h2><i class="fas fa-puzzle-piece"></i> Desafios Técnicos</h2>
+        <ul>
+          <li>
+            <strong>Integração de múltiplos robôs:</strong> Padronização das comunicações entre bots de diferentes tecnologias.
+          </li>
+          <li>
+            <strong>Gerenciamento de agendamento e falhas:</strong> Tratamento de logs e alertas automáticos para supervisão mínima.
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span id="year"></span> Leiene Neves. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // Atualiza o ano automaticamente no rodapé
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Botão para executar o orquestrador.exe
+  document.getElementById("start-orquestrador").addEventListener("click", function() {
+    alert("Iniciando Orquestrador... (Nota: a execução real depende do ambiente permitir iniciar .exe via navegador.)");
+    // Atenção: Navegadores por padrão NÃO podem executar .exe diretamente por segurança.
+    // Em ambiente controlado (ex: Electron, apps internos), é possível usar soluções como chamada de APIs ou shells.
+  });
+</script>
+
+</body>
+</html>
