@@ -109,87 +109,145 @@
 </footer>
 
 <script>
-let dadosBanco = [];
-let dadosInterno = [];
-let resultadoConsolidado = [];
-
-document.getElementById('bancoFile').addEventListener('change', function(event) {
-  Papa.parse(event.target.files[0], {
-    header: true,
-    skipEmptyLines: true,
-    complete: function(results) {
-      dadosBanco = results.data;
-    }
-  });
-});
-
-document.getElementById('internoFile').addEventListener('change', function(event) {
-  Papa.parse(event.target.files[0], {
-    header: true,
-    skipEmptyLines: true,
-    complete: function(results) {
-      dadosInterno = results.data;
-    }
-  });
-});
-
-function conciliar() {
-  const listaResultado = document.getElementById('listaResultado');
-  listaResultado.innerHTML = "";
-  resultadoConsolidado = [];
-
-  if (dadosBanco.length === 0 || dadosInterno.length === 0) {
-    alert("Importe ambos os arquivos para fazer a conciliação!");
-    return;
-  }
-
-  dadosBanco.forEach(lancamento => {
-    const encontrado = dadosInterno.find(registro => 
-      registro.Data === lancamento.Data && 
-      parseFloat(registro.Valor.replace(",", ".")) === parseFloat(lancamento.Valor.replace(",", "."))
-    );
-
-    const status = encontrado ? "Conciliado" : "Não conciliado";
-
-    resultadoConsolidado.push({
-      Data: lancamento.Data,
-      Valor: lancamento.Valor,
-      Descrição: lancamento.Descrição,
-      Status: status
+  let dadosBanco = [];
+  let dadosInterno = [];
+  let resultadoConsolidado = [];
+  
+  let bancoCarregado = false;
+  let internoCarregado = false;
+  
+  // Importação dos lançamentos bancários
+  document.getElementById('bancoFile').addEventListener('change', function(event) {
+    Papa.parse(event.target.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        dadosBanco = results.data;
+        bancoCarregado = true;
+        alert("Arquivo de lançamentos bancários carregado com sucesso!");
+      }
     });
-
-    const li = document.createElement('li');
-    li.innerHTML = encontrado 
-      ? `✅ Conciliado: <strong>${lancamento.Descrição}</strong> (${lancamento.Data} - R$${lancamento.Valor})`
-      : `⚠️ Não conciliado: <strong>${lancamento.Descrição}</strong> (${lancamento.Data} - R$${lancamento.Valor})`;
-    listaResultado.appendChild(li);
   });
-}
-
-function baixarRelatorio() {
-  if (resultadoConsolidado.length === 0) {
-    alert("Realize a conciliação antes de baixar o relatório!");
-    return;
+  
+  // Importação dos registros internos
+  document.getElementById('internoFile').addEventListener('change', function(event) {
+    Papa.parse(event.target.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        dadosInterno = results.data;
+        internoCarregado = true;
+        alert("Arquivo de registros internos carregado com sucesso!");
+      }
+    });
+  });
+  
+  // Função principal de conciliação
+  function conciliar() {
+    const listaResultado = document.getElementById('listaResultado');
+    listaResultado.innerHTML = "";
+    resultadoConsolidado = [];
+  
+    if (!bancoCarregado || !internoCarregado) {
+      alert("Aguarde a importação completa dos arquivos antes de conciliar!");
+      return;
+    }
+  
+    let conciliados = 0;
+    let naoConciliados = 0;
+  
+    dadosBanco.forEach(lancamento => {
+      const dataBanco = normalizarData(lancamento.Data);
+      const valorBanco = normalizarValor(lancamento.Valor);
+  
+      const encontrado = dadosInterno.find(registro => {
+        const dataInterno = normalizarData(registro.Data);
+        const valorInterno = normalizarValor(registro.Valor);
+        return dataBanco === dataInterno && valorBanco === valorInterno;
+      });
+  
+      const status = encontrado ? "Conciliado" : "Não conciliado";
+  
+      resultadoConsolidado.push({
+        Data: lancamento.Data,
+        Valor: lancamento.Valor,
+        Descrição: lancamento.Descrição,
+        Status: status
+      });
+  
+      const li = document.createElement('li');
+      li.innerHTML = encontrado 
+        ? `✅ Conciliado: <strong>${lancamento.Descrição}</strong> (${lancamento.Data} - R$${lancamento.Valor})`
+        : `⚠️ Não conciliado: <strong>${lancamento.Descrição}</strong> (${lancamento.Data} - R$${lancamento.Valor})`;
+      listaResultado.appendChild(li);
+  
+      if (encontrado) {
+        conciliados++;
+      } else {
+        naoConciliados++;
+      }
+    });
+  
+    // Exibe resumo final
+    const resumo = document.createElement('li');
+    resumo.style.marginTop = '20px';
+    resumo.style.fontWeight = 'bold';
+    resumo.innerHTML = `
+      📄 Total de lançamentos: ${conciliados + naoConciliados}<br>
+      ✅ Conciliados: ${conciliados}<br>
+      ⚠️ Não conciliados: ${naoConciliados}
+    `;
+    listaResultado.appendChild(resumo);
   }
-
-  const csv = Papa.unparse(resultadoConsolidado);
-
-  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-
-  const link = document.createElement('a');
-  link.setAttribute('href', url);
-  link.setAttribute('download', 'relatorio_conciliacao.csv');
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-</script>
-
-<script>
-  // Atualizar o ano automaticamente
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+  
+  // Função para normalizar valores (R$ etc.)
+  function normalizarValor(valor) {
+    if (!valor) return 0;
+    return parseFloat(valor.replace(/[^\d,.-]/g, '').replace(',', '.')) || 0;
+  }
+  
+  // Função para normalizar datas (dd/mm/yyyy → yyyy-mm-dd)
+  function normalizarData(data) {
+    if (!data) return '';
+    const parts = data.includes('/') ? data.split('/') : data.split('-');
+    if (parts.length === 3) {
+      if (data.includes('/')) {
+        // Formato brasileiro (dd/mm/yyyy)
+        return `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+      } else {
+        // Formato ISO (yyyy-mm-dd)
+        return data;
+      }
+    }
+    return data;
+  }
+  
+  // Função para baixar relatório consolidado
+  function baixarRelatorio() {
+    if (resultadoConsolidado.length === 0) {
+      alert("Realize a conciliação antes de baixar o relatório!");
+      return;
+    }
+  
+    const csv = Papa.unparse(resultadoConsolidado);
+  
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+  
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', 'relatorio_conciliacao.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  </script>
+  
+  <script>
+    // Atualiza o ano automaticamente no rodapé
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+    
 
 </body>
 </html>
