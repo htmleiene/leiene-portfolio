@@ -1456,6 +1456,5 @@ footer p {
 
 .menu-toggle {
     color: var(--primary-color);
-    background: var(--secondary-color);
     cursor: pointer; /* Muda o cursor para indicar que é clicável */
 }
