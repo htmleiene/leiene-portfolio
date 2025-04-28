@@ -41,6 +41,18 @@
     transform: translateY(-3px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
+
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .chart-container canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
 /* Botão secundário - ESTILO ORIGINAL */
 .btn.secondary {
     background-color: transparent;
@@ -95,11 +107,12 @@ body {
 }
 
 .container {
-    width: 90%;
+    width: 100%;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-}
+  }
+  
 
 .logo_rb {
     height: 100px;
@@ -428,18 +441,23 @@ nav ul li a:hover::after {
 }
 
 .results-grid {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
     max-width: 900px;
     margin: 0 auto;
 }
 
 .result-card {
+    flex: 1 1 200px; /* Ocupa pelo menos 200px, mas encolhe/cresce */
     background: white;
     padding: 40px 30px;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    max-width: 300px;
     text-align: center;
     transition: transform 0.3s ease;
 }
@@ -1291,6 +1309,19 @@ footer p {
     }
 }
 
+@media (max-width: 600px) {
+    .project-meta {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .create-dashboard-btn {
+      width: 100%;
+    }
+  }
+
+  
 .project-card.featured {
     border: 2px solid #2ecc71; /* Ou outra cor */
 }
@@ -1335,3 +1366,47 @@ footer p {
     justify-content: center;
     font-size: 0.8rem;
 }
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    header .container,
+    footer .container,
+    main .container {
+      padding: 0 10px;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    nav ul {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+  
+    .results-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .dashboard-tool {
+      width: 100%;
+    }
+  
+    .chart-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .chart-container canvas {
+      width: 100% !important;
+      height: auto !important;
+    }
+  
+    .btn {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
