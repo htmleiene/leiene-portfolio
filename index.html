@@ -16,7 +16,7 @@
             </a>
             <nav>
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
-                <ul>
+                <ul id="menu-list">
                     <li><a href="#home">Início</a></li>
                     <li><a href="#about">Sobre</a></li>
                     <li><a href="#skills">Habilidades</a></li>
@@ -500,11 +500,16 @@
         </div>
     </footer>
 
-    <script src="script.js">
-            function toggleMenu() {
-            const navList = document.getElementById('nav-list');
-            navList.classList.toggle('active');
+    <script src="script.js"></script>
+    <script>
+    function toggleMenu() {
+        const menuList = document.getElementById('menu-list');
+        if (menuList.style.display === 'block') {
+            menuList.style.display = 'none';
+        } else {
+            menuList.style.display = 'block';
         }
+    }
     </script>
 </body>
 </html>

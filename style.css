@@ -134,7 +134,7 @@ a {
     color: inherit;
 }
 
-ul {
+#menu-list {
     list-style: none;
 }
 
@@ -240,12 +240,12 @@ header .container {
     color: var(--primary-color);
 }
 
-nav ul {
+nav #menu-list {
     display: flex;
     gap: 35px;
 }
 
-nav ul li a {
+nav #menu-list li a {
     font-weight: 600;
     position: relative;
     padding: 8px 0;
@@ -253,7 +253,7 @@ nav ul li a {
     transition: color 0.3s ease;
 }
 
-nav ul li a::after {
+nav #menu-list li a::after {
     content: '';
     position: absolute;
     bottom: 0;
@@ -264,11 +264,11 @@ nav ul li a::after {
     transition: width 0.3s ease;
 }
 
-nav ul li a:hover {
+#menu-list li a:hover {
     color: var(--primary-color);
 }
 
-nav ul li a:hover::after {
+#menu-list li a:hover::after {
     width: 100%;
 }
 
@@ -1206,7 +1206,7 @@ footer p {
         gap: 20px;
     }
     
-    nav ul {
+    #menu-list {
         gap: 20px;
         flex-wrap: wrap;
         justify-content: center;
@@ -1417,7 +1417,7 @@ footer p {
       align-items: center;
     }
   
-    nav ul {
+    #menu-listl {
       flex-direction: column;
       gap: 10px;
       align-items: center;
@@ -1450,3 +1450,12 @@ footer p {
     }
   }
   
+  #menu-list {
+    display: none; /* Oculta o menu por padrão */
+}
+
+.menu-toggle {
+    color: var(--primary-color);
+    background: var(--secondary-color);
+    cursor: pointer; /* Muda o cursor para indicar que é clicável */
+}
