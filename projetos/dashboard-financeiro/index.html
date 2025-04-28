@@ -1,85 +1,174 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Financeiro | Leiene Neves</title>
-    <link rel="stylesheet" href="../../style.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Financeiro | Leiene Neves</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <a href="../../index.html" class="logo-link">
-                <img class="logo" src="../../assets/images/logo.png" alt="Voltar ao portfólio">
-            </a>
-            <nav>
-                <ul>
-                    <li><a href="../../index.html#projects">Voltar aos Projetos</a></li>
-                </ul>
-            </nav>
+
+<header>
+  <div class="container">
+    <a href="../../index.html" class="logo-link">
+      <img class="logo" src="../../assets/images/logo.png" alt="Voltar ao portfólio">
+    </a>
+    <nav>
+      <ul>
+        <li><a href="../../index.html#projects">Voltar aos Projetos</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main class="project-detail">
+  <div class="container">
+    <h1>Dashboard Financeiro</h1>
+
+    <div class="project-meta">
+      <span class="tech">HTML</span>
+      <span class="tech">JavaScript</span>
+      <span class="tech">Chart.js</span>
+      <span class="tech">PapaParse</span>
+      <a href="#" class="btn disabled">Demo Interna</a>
+      <a href="LINK_GITHUB" target="_blank" class="btn secondary">Código no GitHub</a>
+    </div>
+
+    <div class="project-content">
+      <section class="project-overview">
+        <h2><i class="fas fa-search"></i> Visão Geral</h2>
+        <p>Dashboard interativo que permite importar um arquivo CSV com dados financeiros e gerar gráficos dinâmicos para análise.</p>
+
+        <div class="results-grid">
+          <div class="result-card">
+            <i class="fas fa-file-csv"></i>
+            <strong>Importação</strong>
+            <p>de CSVs</p>
+          </div>
+          <div class="result-card">
+            <i class="fas fa-chart-pie"></i>
+            <strong>Gráficos</strong>
+            <p>dinâmicos</p>
+          </div>
+          <div class="result-card">
+            <i class="fas fa-download"></i>
+            <strong>Exportação</strong>
+            <p>de Relatórios</p>
+          </div>
         </div>
-    </header>
+      </section>
 
-    <main class="project-detail">
-        <div class="container">
-            <h1>Dashboard Financeiro</h1>
-            <div class="project-meta">
-                <span class="tech">Power BI</span>
-                <span class="tech">SQL</span>
-                <span class="tech">Python</span>
-                <a href="#" class="btn disabled">Demo Interna</a>
-                <a href="LINK_GITHUB" target="_blank" class="btn secondary">Código no GitHub</a>
-            </div>
+      <section class="project-screenshots">
+        <h2><i class="fas fa-play"></i> Teste o Dashboard</h2>
+        <div class="dashboard-tool">
+          <div class="file-input">
+            <label><strong>Importar Dados Financeiros (.csv):</strong></label><br>
+            <input type="file" id="financeiroFile" accept=".csv">
+          </div>
 
-            <div class="project-content">
-                <section class="project-overview">
-                    <h2><i class="fas fa-search"></i> Visão Geral</h2>
-                    <p>Painel interativo que consolida dados financeiros de múltiplas fontes (ERP, bancos, planilhas) para análise estratégica em tempo real.</p>
-                    <div class="results-grid">
-                        <div class="result-card">
-                            <i class="fas fa-bolt"></i>
-                            <strong>5 fontes</strong>
-                            <p>integradas</p>
-                        </div>
-                        <div class="result-card">
-                            <i class="fas fa-sync-alt"></i>
-                            <strong>Atualização</strong>
-                            <p>hora a hora</p>
-                        </div>
-                    </div>
-                </section>
+          <button class="create-dashboard-btn" onclick="gerarDashboard()">Gerar Dashboard</button>
 
-                <section class="project-screenshots">
-                    <h2><i class="fas fa-image"></i> Telas do Dashboard</h2>
-                    <div class="gallery">
-                        <img src="assets/screens/dash-financeiro-1.png" alt="Visão geral">
-                        <img src="assets/screens/dash-financeiro-2.png" alt="Detalhamento por área">
-                    </div>
-                </section>
-
-                <section class="project-challenges">
-                    <h2><i class="fas fa-puzzle-piece"></i> Desafios Técnicos</h2>
-                    <ul>
-                        <li>
-                            <strong>Problema:</strong> Dados desestruturados de bancos diferentes.<br>
-                            <strong>Solução:</strong> Pipeline ETL com Python para padronização.
-                        </li>
-                        <li>
-                            <strong>Problema:</strong> Lentidão em consultas com 1M+ registros.<br>
-                            <strong>Solução:</strong> Otimização de queries SQL e particionamento.
-                        </li>
-                    </ul>
-                </section>
-            </div>
+          <div class="chart-container">
+            <canvas id="graficoReceitas" width="400" height="200"></canvas>
+            <canvas id="graficoDespesas" width="400" height="200"></canvas>
+          </div>
         </div>
-    </main>
+      </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year"></span> Leiene Neves. Todos os direitos reservados.</p>
-        </div>
-    </footer>
+      <section class="project-challenges">
+        <h2><i class="fas fa-puzzle-piece"></i> Desafios Técnicos</h2>
+        <ul>
+          <li>
+            <strong>Problema:</strong> Dados financeiros com formatação inconsistente.<br>
+            <strong>Solução:</strong> Usar PapaParse para padronizar os dados.
+          </li>
+          <li>
+            <strong>Problema:</strong> Gerar gráficos dinâmicos de dados de diferentes categorias.<br>
+            <strong>Solução:</strong> Utilização de gráficos interativos com Chart.js.
+          </li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>&copy; <span id="year"></span> Leiene Neves. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+  // Atualiza o ano automaticamente
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  let dadosFinanceiros = [];
+
+  // Função para carregar o arquivo CSV e processar os dados
+  document.getElementById('financeiroFile').addEventListener('change', function(event) {
+    Papa.parse(event.target.files[0], {
+      header: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        dadosFinanceiros = results.data;
+      }
+    });
+  });
+
+  // Função para gerar o dashboard após o upload do arquivo CSV
+  function gerarDashboard() {
+    if (dadosFinanceiros.length === 0) {
+      alert("Por favor, importe um arquivo CSV primeiro!");
+      return;
+    }
+
+    // Processar os dados para gráficos
+    const receitas = [];
+    const despesas = [];
+
+    dadosFinanceiros.forEach(dado => {
+      if (dado.Tipo === 'Receita') {
+        receitas.push(parseFloat(dado.Valor.replace(",", ".")));
+      } else if (dado.Tipo === 'Despesa') {
+        despesas.push(parseFloat(dado.Valor.replace(",", ".")));
+      }
+    });
+
+    // Criando os gráficos
+    criarGrafico('graficoReceitas', receitas, 'Receitas', 'green');
+    criarGrafico('graficoDespesas', despesas, 'Despesas', 'red');
+  }
+
+  // Função para criar um gráfico
+  function criarGrafico(elementId, data, label, color) {
+    const ctx = document.getElementById(elementId).getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: Array(data.length).fill('Mês'), // Exemplo simples com o mês
+        datasets: [{
+          label: label,
+          data: data,
+          backgroundColor: color,
+          borderColor: color,
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }
+</script>
+
 </body>
 </html>

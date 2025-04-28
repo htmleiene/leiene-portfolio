@@ -1,84 +1,334 @@
 /* Estilos compartilhados entre todas as páginas de projeto */
-.project-detail {
-    padding: 60px 0;
-    color: #333;
-}
-
-.project-meta {
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+  }
+  
+  /* Container */
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Cabeçalho */
+  header {
+    background-color: #ffff;
+    padding: 15px 0;
+  }
+  
+  header .logo {
+    max-width: 150px;
+  }
+  
+  header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  header nav ul li {
+    margin-right: 20px;
+  }
+  
+  header nav ul li a {
+    color: #2c3e50;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  header .logo-link img {
+    max-width: 100%;
+  }
+  
+  /* Meta do Projeto */
+  .project-meta {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
     margin: 20px 0 40px;
     align-items: center;
-}
-
-.tech {
+  }
+  
+  .tech {
     background: #f0f0f0;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.9rem;
-}
-
-.results-grid {
+    color: #333;
+  }
+  
+  .results-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 20px;
     margin: 30px 0;
-}
-
-.result-card {
+  }
+  
+  .result-card {
     background: white;
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.result-card i {
+  }
+  
+  .result-card i {
     font-size: 2rem;
     color: #2ecc71;
     margin-bottom: 10px;
-}
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.gallery img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-}
-
-.gallery img:hover {
-    transform: scale(1.02);
-}
-
-.project-challenges ul {
+  }
+  
+  /* Cards de Descrição */
+  .project-screenshots, .project-challenges {
+    margin-top: 40px;
+  }
+  
+  .project-challenges ul {
     padding-left: 20px;
-}
-
-.project-challenges li {
+  }
+  
+  .project-challenges li {
     margin-bottom: 15px;
     line-height: 1.6;
-}
-
-.project-challenges strong {
+  }
+  
+  .project-challenges strong {
     color: #3498db;
-}
-
-.disabled {
-    opacity: 0.6;
+  }
+  
+  .project-overview {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* **Botões** */
+  
+  .btn {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .btn.primary {
+    background-color: #3498db;
+  }
+  
+  .btn.primary:hover {
+    background-color: #2980b9;
+  }
+  
+  .btn.secondary {
+    background-color: #e67e22;
+  }
+  
+  .btn.secondary:hover {
+    background-color: #d35400;
+  }
+  
+  .btn.disabled {
+    background-color: #bdc3c7;
+    color: #7f8c8d;
     cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .btn .fa {
+    margin-right: 8px;
+  }
+  
+  /* **Formatação de Input de Arquivo** */
+/* Estilo para o input de tipo arquivo */
+.file-input input[type="file"] {
+    display: block;             /* Garante que ocupe o espaço disponível */
+    width: 100%;                /* Ocupa 100% da largura do container */
+    padding: 12px;              /* Espaço interno para o texto */
+    font-size: 1rem;            /* Tamanho da fonte do texto */
+    border-radius: 8px;         /* Bordas arredondadas */
+    border: 1px solid #ddd;     /* Borda cinza clara */
+    background-color: #fff;     /* Cor de fundo branca */
+    margin-top: 10px;           /* Distância do elemento anterior */
+    cursor: pointer;           /* Indicando que é um botão clicável */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Suaviza transições */
 }
 
-@media (max-width: 768px) {
+/* Foco no input de arquivo */
+.file-input input[type="file"]:focus {
+    outline: none;              /* Remove a borda padrão de foco */
+    border-color: #3498db;      /* Borda azul quando focado */
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5); /* Sombra azul ao focar */
+}
+
+/* Para ocultar a caixa padrão do input de arquivo */
+.file-input input[type="file"]::-webkit-file-upload-button {
+    background: #3498db;        /* Cor de fundo azul */
+    color: white;               /* Cor do texto branca */
+    padding: 8px 20px;          /* Tamanho do botão */
+    border-radius: 8px;         /* Bordas arredondadas */
+    border: none;               /* Remover borda */
+    font-size: 1rem;            /* Tamanho da fonte */
+    cursor: pointer;           /* Indicando que é clicável */
+    transition: background 0.3s; /* Transição suave */
+}
+
+/* Hover no botão do input de arquivo */
+.file-input input[type="file"]::-webkit-file-upload-button:hover {
+    background: #2980b9;        /* Cor de fundo mais escura quando passar o mouse */
+}
+
+/* Para navegadores Firefox */
+.file-input input[type="file"] {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Para quando o arquivo for selecionado e mostrado */
+.file-input input[type="file"]::file-selector-button {
+    background: #3498db;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Hover no botão de arquivo para Firefox */
+.file-input input[type="file"]::file-selector-button:hover {
+    background: #2980b9;
+}
+  
+  /* Formatação geral do formulário */
+  .form-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .form-container label {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+  }
+  
+  .form-container input, .form-container select {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+  }
+  
+  .form-container input:focus, .form-container select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
     .project-meta {
-        flex-direction: column;
-        align-items: flex-start;
+      flex-direction: column;
+      align-items: flex-start;
     }
+  
+    .results-grid {
+      grid-template-columns: 1fr;
+    }
+  
+    .project-content {
+      padding: 20px;
+    }
+  }
+  
+  .chart-container {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+  }
+  
+  .chart-container canvas {
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+/* Estilo para o botão Criar Dashboard */
+.create-dashboard-btn {
+    display: inline-block;       /* Garante que o botão ocupe apenas o espaço necessário */
+    background-color: #08915f;   /* Cor de fundo azul */
+    color: white;                /* Cor do texto */
+    font-size: 1.1rem;           /* Tamanho da fonte */
+    padding: 12px 30px;          /* Espaço interno do botão */
+    border-radius: 8px;          /* Bordas arredondadas */
+    border: none;                /* Remove borda */
+    cursor: pointer;            /* Indica que o botão é clicável */
+    transition: background-color 0.3s, transform 0.3s; /* Transições suaves */
+    text-align: center;          /* Alinhamento do texto */
+}
+
+/* Efeito de hover no botão Criar Dashboard */
+.create-dashboard-btn:hover {
+    background-color: #26cc8f;   /* Cor de fundo mais escura quando passar o mouse */
+    transform: scale(1.05);       /* Leve aumento no tamanho ao passar o mouse */
+}
+
+/* Efeito de clique no botão Criar Dashboard */
+.create-dashboard-btn:active {
+    background-color: #008152;   /* Cor de fundo mais escura ao clicar */
+    transform: scale(1);          /* Reduz o aumento no clique */
+}
+
+/* Efeito de foco no botão Criar Dashboard */
+.create-dashboard-btn:focus {
+    outline: none;                /* Remove o contorno padrão de foco */
+    box-shadow: 0 0 5px #08915f; /* Sombra azul quando focado */
+}
+/* Estilo para o campo de entrada de URL */
+.project-input input[type="url"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    margin-top: 10px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito de foco no campo de URL */
+.project-input input[type="url"]:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+    outline: none;
+}
+
+/* Estilo do placeholder */
+.project-input input[type="url"]::placeholder {
+    color: #aaa;
+    font-style: italic;
 }

@@ -3,23 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workflow de Crédito | Leiene Neves</title>
+    <title>Workflow Crédito | Leiene Neves</title>
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <!-- Header igual aos anteriores -->
+        <div class="container">
+            <a href="../../index.html" class="logo-link">
+                <img class="logo" src="../../assets/images/logo.png" alt="Voltar ao portfólio">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html#projects">Voltar aos Projetos</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="project-detail">
         <div class="container">
-            <h1>Workflow de Crédito Automatizado</h1>
+            <h1>Workflow Crédito</h1>
             <div class="project-meta">
-                <span class="tech">BPMN</span>
                 <span class="tech">Python</span>
-                <span class="tech">YAML</span>
+                <span class="tech">Django</span>
+                <span class="tech">PostgreSQL</span>
                 <a href="#" class="btn disabled">Demo Interna</a>
                 <a href="LINK_GITHUB" target="_blank" class="btn secondary">Código no GitHub</a>
             </div>
@@ -27,39 +36,59 @@
             <div class="project-content">
                 <section class="project-overview">
                     <h2><i class="fas fa-search"></i> Visão Geral</h2>
-                    <p>Sistema que automatiza a análise de crédito com regras configuráveis, reduzindo tempo de aprovação e aumentando a precisão.</p>
+                    <p>Plataforma para gerenciar e acompanhar solicitações de crédito, automatizando os processos de aprovação e análise.</p>
                     <div class="results-grid">
                         <div class="result-card">
-                            <i class="fas fa-clock"></i>
-                            <strong>3 dias → 1 dia</strong>
-                            <p>tempo médio</p>
+                            <i class="fas fa-tasks"></i>
+                            <strong>Processos</strong>
+                            <p>de crédito gerenciados</p>
                         </div>
                         <div class="result-card">
-                            <i class="fas fa-chart-line"></i>
-                            <strong>40%</strong>
-                            <p>mais análises/dia</p>
+                            <i class="fas fa-sync-alt"></i>
+                            <strong>Automação</strong>
+                            <p>de aprovação de crédito</p>
                         </div>
                     </div>
                 </section>
 
-                <section class="project-screenshots">
-                    <h2><i class="fas fa-image"></i> Fluxo do Processo</h2>
-                    <div class="gallery">
-                        <img src="assets/screens/workflow-bpmn.png" alt="Diagrama BPMN">
-                        <img src="assets/screens/regras-yaml.png" alt="Exemplo de regras YAML">
+                <section class="project-inputs">
+                    <h2><i class="fas fa-plus-circle"></i> Novo Pedido de Crédito</h2>
+                    <div class="input-container">
+                        <label for="valor">Valor do Crédito:</label>
+                        <input type="number" id="valor" name="valor" placeholder="Informe o valor do crédito">
+                    </div>
+                    <div class="input-container">
+                        <label for="prazo">Prazo de Pagamento (meses):</label>
+                        <input type="number" id="prazo" name="prazo" placeholder="Informe o prazo de pagamento">
+                    </div>
+                    <button onclick="criarPedido()">Criar Pedido</button>
+                </section>
+
+                <section class="project-status">
+                    <h2><i class="fas fa-chart-line"></i> Status de Processamento</h2>
+                    <p>Visualize os pedidos de crédito e acompanhe seu status de análise.</p>
+                    <div class="status-grid">
+                        <div class="status-card">
+                            <strong>Pedido 1</strong>
+                            <p>Status: Em análise</p>
+                        </div>
+                        <div class="status-card">
+                            <strong>Pedido 2</strong>
+                            <p>Status: Aprovado</p>
+                        </div>
                     </div>
                 </section>
 
                 <section class="project-challenges">
-                    <h2><i class="fas fa-puzzle-piece"></i> Complexidades</h2>
+                    <h2><i class="fas fa-puzzle-piece"></i> Desafios Técnicos</h2>
                     <ul>
                         <li>
-                            <strong>Desafio:</strong> Integração com sistemas legados.<br>
-                            <strong>Solução:</strong> Adaptador Python para APIs SOAP.
+                            <strong>Problema:</strong> Processamento manual de solicitações.<br>
+                            <strong>Solução:</strong> Automação do fluxo com Django e análise de crédito.
                         </li>
                         <li>
-                            <strong>Desafio:</strong> Regras de negócio dinâmicas.<br>
-                            <strong>Solução:</strong> Motor de regras em YAML + Python.
+                            <strong>Problema:</strong> Falta de visibilidade no status das análises.<br>
+                            <strong>Solução:</strong> Implementação de dashboard em tempo real para visualização do status.
                         </li>
                     </ul>
                 </section>

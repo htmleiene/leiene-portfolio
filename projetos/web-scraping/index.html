@@ -3,65 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solução de Web Scraping | Leiene Neves</title>
+    <title>Web Scraping | Leiene Neves</title>
     <link rel="stylesheet" href="../../style.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <header>
-        <!-- Header padrão -->
+        <div class="container">
+            <a href="../../index.html" class="logo-link">
+                <img class="logo" src="../../assets/images/logo.png" alt="Voltar ao portfólio">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="../../index.html#projects">Voltar aos Projetos</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
     <main class="project-detail">
         <div class="container">
-            <h1>Coleta Automatizada de Dados Web</h1>
+            <h1>Web Scraping</h1>
             <div class="project-meta">
                 <span class="tech">Python</span>
                 <span class="tech">BeautifulSoup</span>
-                <span class="tech">Selenium</span>
-                <a href="LINK_DEMO" target="_blank" class="btn">Ver Demo</a>
+                <span class="tech">Requests</span>
+                <a href="#" class="btn disabled">Demo Interna</a>
                 <a href="LINK_GITHUB" target="_blank" class="btn secondary">Código no GitHub</a>
             </div>
 
             <div class="project-content">
                 <section class="project-overview">
                     <h2><i class="fas fa-search"></i> Visão Geral</h2>
-                    <p>Robô que coleta dados de sites públicos (ex: tribunais, portais de transparência) e gera relatórios estruturados para análise.</p>
-                    <div class="results-grid">
-                        <div class="result-card">
-                            <i class="fas fa-clock"></i>
-                            <strong>10h/semana</strong>
-                            <p>economizadas</p>
-                        </div>
-                        <div class="result-card">
-                            <i class="fas fa-database"></i>
-                            <strong>5k+</strong>
-                            <p>registros/mês</p>
-                        </div>
-                    </div>
+                    <p>Projeto que realiza web scraping para coletar dados de sites e gerar relatórios automáticos em formato CSV.</p>
                 </section>
 
-                <section class="project-screenshots">
-                    <h2><i class="fas fa-image"></i> Funcionamento</h2>
-                    <div class="gallery">
-                        <img src="assets/screens/scraping-flow.png" alt="Fluxo de coleta">
-                        <img src="assets/screens/dados-coletados.png" alt="Exemplo de dados">
-                    </div>
+                <section class="project-input">
+                    <h2><i class="fas fa-upload"></i> Inserir URL</h2>
+                    <input type="url" id="urlInput" placeholder="Insira a URL do site para scraping" required>
+                    <button class="create-dashboard-btn" onclick="iniciarScraping()">Iniciar Scraping</button>
                 </section>
 
-                <section class="project-challenges">
-                    <h2><i class="fas fa-puzzle-piece"></i> Anti-Bots e Soluções</h2>
-                    <ul>
-                        <li>
-                            <strong>Desafio:</strong> Sites com Cloudflare e CAPTCHAs.<br>
-                            <strong>Solução:</strong> Rotação de IPs e delays aleatórios.
-                        </li>
-                        <li>
-                            <strong>Desafio:</strong> Estrutura HTML variável.<br>
-                            <strong>Solução:</strong> Fallbacks com XPath e regex.
-                        </li>
-                    </ul>
+                <section class="project-results">
+                    <h2><i class="fas fa-table"></i> Resultados</h2>
+                    <div id="resultsTable" class="results-table">
+                        <!-- A tabela de resultados será gerada aqui -->
+                    </div>
                 </section>
             </div>
         </div>
@@ -72,5 +60,46 @@
             <p>&copy; <span id="year"></span> Leiene Neves. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <script>
+        // Função para iniciar o processo de scraping
+        function iniciarScraping() {
+            const url = document.getElementById('urlInput').value;
+            if (!url) {
+                alert("Por favor, insira uma URL válida.");
+                return;
+            }
+
+            fetch('/scrape', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ url: url })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    mostrarResultados(data.results);
+                } else {
+                    alert("Erro ao fazer scraping do site.");
+                }
+            })
+            .catch(error => {
+                console.error("Erro:", error);
+                alert("Erro ao conectar com o servidor.");
+            });
+        }
+
+        // Função para exibir os resultados na tela
+        function mostrarResultados(results) {
+            let html = "<table><tr><th>Título</th><th>Descrição</th></tr>";
+            results.forEach(result => {
+                html += `<tr><td>${result.title}</td><td>${result.description}</td></tr>`;
+            });
+            html += "</table>";
+            document.getElementById('resultsTable').innerHTML = html;
+        }
+    </script>
 </body>
 </html>
