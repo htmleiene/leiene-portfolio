@@ -475,13 +475,34 @@
         <div class="container">
             <h2 class="section-title">Entre em <span>Contato</span></h2>
             <div class="content">
-                <form class="contact-form">
-                    <input type="text" placeholder="Seu Nome" required>
-                    <input type="email" placeholder="Seu Email" required>
-                    <input type="text" placeholder="Assunto">
-                    <textarea placeholder="Sua Mensagem" required></textarea>
+                <form id="contact-form" class="contact-form">
+                    <input type="text" name="user_name" placeholder="Seu Nome" required>
+                    <input type="email" name="user_email" placeholder="Seu Email" required>
+                    <textarea name="message" placeholder="Sua Mensagem" required></textarea>
                     <button type="submit" class="btn">Enviar Mensagem</button>
                 </form>
+                
+                <!-- EmailJS SDK -->
+                <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+                <script>
+                    (function(){
+                        emailjs.init("kbWVZ9fjkOnw83V2n");
+                    })();
+                </script>
+                
+                <script>
+                document.getElementById("contact-form").addEventListener("submit", function(e) {
+                    e.preventDefault();
+                
+                    emailjs.sendForm("SEU_SERVICE_ID", "SEU_TEMPLATE_ID", this)
+                        .then(function(response) {
+                            alert("Mensagem enviada com sucesso!");
+                        }, function(error) {
+                            alert("Erro ao enviar: " + JSON.stringify(error));
+                        });
+                });
+                </script>
+                
                 <div class="contact-info">
                     <h3>Informações de Contato</h3>
                     <div class="info-item">
