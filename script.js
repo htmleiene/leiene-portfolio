@@ -180,58 +180,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Formulário de contato
-    const contactForm = document.querySelector('.contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simular envio
-            const formData = new FormData(this);
-            const formValues = Object.fromEntries(formData.entries());
-            
-            // Validação básica
-            if (!formValues.name || !formValues.email || !formValues.message) {
-                alert('Por favor, preencha todos os campos obrigatórios.');
-                return;
-            }
-            
-            // Feedback visual
-            const submitBtn = this.querySelector('button[type="submit"]');
-            submitBtn.textContent = 'Enviando...';
-            submitBtn.disabled = true;
-            
-            // Simular envio assíncrono
-            setTimeout(() => {
-                console.log('Formulário enviado:', formValues);
-                
-                // Feedback ao usuário
-                submitBtn.textContent = 'Mensagem Enviada!';
-                setTimeout(() => {
-                    submitBtn.textContent = 'Enviar Mensagem';
-                    submitBtn.disabled = false;
-                }, 2000);
-                
-                // Resetar formulário
-                this.reset();
-                
-                // Mostrar mensagem de sucesso
-                const successMessage = document.createElement('div');
-                successMessage.className = 'form-success';
-                successMessage.innerHTML = `
-                    <i class="fas fa-check-circle"></i>
-                    <p>Sua mensagem foi enviada com sucesso! Entrarei em contato em breve.</p>
-                `;
-                this.parentNode.insertBefore(successMessage, this.nextSibling);
-                
-                // Remover mensagem após 5 segundos
-                setTimeout(() => {
-                    successMessage.remove();
-                }, 5000);
-            }, 1500);
-        });
-    }
-
     // Menu mobile (caso necessário)
     const menuToggle = document.querySelector('.menu-toggle');
     if (menuToggle) {
